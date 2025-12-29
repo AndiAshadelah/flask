@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Hasil - Kalkulator Bangun Ruang</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Daftar Hasil Perhitungan</h1>
+            <p>Riwayat perhitungan volume bangun ruang</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Halaman Utama</a></li>
+                <li><a href="calculate.html">Hitung Volume</a></li>
+                <li><a href="results.html" class="active">Daftar Hasil</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            {% if calculations %}
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Bangun Ruang</th>
+                            <th>Variabel 1</th>
+                            <th>Variabel 2</th>
+                            <th>Volume</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for calc in calculations %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ calc.shape }}</td>
+                            <td>{{ calc.var1_name }}: {{ calc.var1 }}</td>
+                            <td>
+                                {% if calc.var2_name != '-' %}
+                                    {{ calc.var2_name }}: {{ calc.var2 }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td class="volume-result">{{ calc.volume }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="no-results">
+                <p>Belum ada data perhitungan. <a href="calculate.html">Hitung volume sekarang</a></p>
+            </div>
+            {% endif %}
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Kalkulator Volume Bangun Ruang</p>
+        </footer>
+    </div>
+</body>
+</html>

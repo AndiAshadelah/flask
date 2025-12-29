@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Volume - Kalkulator Bangun Ruang</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hitung Volume Bangun Ruang</h1>
+            <p>Masukkan nilai yang diperlukan untuk menghitung volume</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Halaman Utama</a></li>
+                <li><a href="calculate.html" class="active">Hitung Volume</a></li>
+                <li><a href="results.html">Daftar Hasil</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div class="calculation-form">
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="shape">Pilih Bangun Ruang:</label>
+                        <select name="shape" id="shape" required onchange="showFields()">
+                            <option value="">-- Pilih Bangun Ruang --</option>
+                            <option value="cube">Kubus</option>
+                            <option value="block">Balok</option>
+                            <option value="sphere">Bola</option>
+                            <option value="cylinder">Tabung</option>
+                            <option value="cone">Kerucut</option>
+                        </select>
+                    </div>
+                    
+                    <div id="input-fields">
+                        <!-- Input fields akan ditampilkan berdasarkan pilihan -->
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Hitung Volume</button>
+                </form>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Kalkulator Volume Bangun Ruang</p>
+        </footer>
+    </div>
+
+    <script>
+        function showFields() {
+            const shape = document.getElementById('shape').value;
+            const inputFields = document.getElementById('input-fields');
+            let html = '';
+            
+            switch(shape) {
+                case 'cube':
+                    html = `
+                        <div class="form-group">
+                            <label for="var1">Panjang Sisi:</label>
+                            <input type="number" name="var1" step="any" required placeholder="Masukkan panjang sisi">
+                        </div>
+                    `;
+                    break;
+                case 'block':
+                    html = `
+                        <div class="form-group">
+                            <label for="var1">Panjang:</label>
+                            <input type="number" name="var1" step="any" required placeholder="Masukkan panjang">
+                        </div>
+                        <div class="form-group">
+                            <label for="var2">Lebar:</label>
+                            <input type="number" name="var2" step="any" required placeholder="Masukkan lebar">
+                        </div>
+                        <div class="form-group">
+                            <label for="var3">Tinggi:</label>
+                            <input type="number" name="var3" step="any" required placeholder="Masukkan tinggi">
+                        </div>
+                    `;
+                    break;
+                case 'sphere':
+                    html = `
+                        <div class="form-group">
+                            <label for="var1">Jari-jari:</label>
+                            <input type="number" name="var1" step="any" required placeholder="Masukkan jari-jari">
+                        </div>
+                    `;
+                    break;
+                case 'cylinder':
+                    html = `
+                        <div class="form-group">
+                            <label for="var1">Jari-jari:</label>
+                            <input type="number" name="var1" step="any" required placeholder="Masukkan jari-jari">
+                        </div>
+                        <div class="form-group">
+                            <label for="var2">Tinggi:</label>
+                            <input type="number" name="var2" step="any" required placeholder="Masukkan tinggi">
+                        </div>
+                    `;
+                    break;
+                case 'cone':
+                    html = `
+                        <div class="form-group">
+                            <label for="var1">Jari-jari:</label>
+                            <input type="number" name="var1" step="any" required placeholder="Masukkan jari-jari">
+                        </div>
+                        <div class="form-group">
+                            <label for="var2">Tinggi:</label>
+                            <input type="number" name="var2" step="any" required placeholder="Masukkan tinggi">
+                        </div>
+                    `;
+                    break;
+                default:
+                    html = '<p>Pilih bangun ruang untuk menampilkan input fields</p>';
+            }
+            
+            inputFields.innerHTML = html;
+        }
+        
+        // Initialize fields on page load
+        document.addEventListener('DOMContentLoaded', showFields);
+    </script>
+</body>
+</html>
